@@ -1,10 +1,18 @@
 <main class="wrapper">
-  <form [formGroup]="formGroup">
-    <input
-      formControlName="term"
-      placeholder="Filter..."
-    />
-  </form>
+  <div class="header">
+    <h3 class="heading">Products</h3>
+
+    <form
+      class="form"
+      [formGroup]="formGroup"
+    >
+      <input
+        class="search"
+        formControlName="term"
+        placeholder="Filter..."
+      />
+    </form>
+  </div>
 
   @if (vm$ | async; as vm) {
     <app-product-list
