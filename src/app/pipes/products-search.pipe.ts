@@ -7,8 +7,11 @@ import { Product } from '../services/products.service';
 export class ProductsSearchPipe implements PipeTransform {
   public transform(products: Product[], term: string): Product[] {
     let searchTerm = term.trim().toLocaleLowerCase();
-    return products.filter(({ name }) =>
-      name.toLocaleLowerCase().includes(searchTerm)
-    );
+
+    return !searchTerm
+      ? products
+      : products.filter(({ name }) =>
+          name.toLocaleLowerCase().includes(searchTerm)
+        );
   }
 }

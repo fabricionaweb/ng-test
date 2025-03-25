@@ -29,6 +29,10 @@ describe('ProductsSearchPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
+  it('should return all if no term to search', () => {
+    expect(pipe.transform(mockProducts, '')).not.toEqual([]);
+  });
+
   it('should trim the spaces', () => {
     expect(pipe.transform(mockProducts, '  fooBar  ')).toContain({
       id: '3',
