@@ -1,0 +1,22 @@
+<p>product-list works!</p>
+
+<form [formGroup]="formGroup">
+  <input formControlName="term" />
+</form>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
+  @if (vm$ | async; as vm) {
+    @for (product of vm.products; track product) {
+      <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price | currency }}</td>
+      </tr>
+    }
+  }
+</table>
