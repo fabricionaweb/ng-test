@@ -11,12 +11,22 @@
     <th>Price</th>
   </tr>
   @if (vm$ | async; as vm) {
-    @for (product of vm.products; track product) {
-      <tr>
-        <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price | currency }}</td>
-      </tr>
+    @if (vm.products | productsSearch:vm.searchTerm; as products) {
+      @if (products.length === 0) {
+        <tr>
+          <td colspan="3">
+            No products
+          </td>
+        </tr>
+      }
+
+      @for (product of products; track product) {
+        <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price | currency }}</td>
+        </tr>
+      }
     }
   }
 </table>
