@@ -1,3 +1,14 @@
-<p>home works!</p>
+<main class="wrapper">
+  <form [formGroup]="formGroup">
+    <input
+      formControlName="term"
+      placeholder="Filter..."
+    />
+  </form>
 
-<app-product-list />
+  @if (vm$ | async; as vm) {
+    <app-product-list
+      [products]="vm.products | productsSearch:vm.searchTerm"
+    />
+  }
+</main>

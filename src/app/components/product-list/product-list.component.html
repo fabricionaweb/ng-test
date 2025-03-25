@@ -1,32 +1,21 @@
-<p>product-list works!</p>
-
-<form [formGroup]="formGroup">
-  <input formControlName="term" />
-</form>
-
-<table>
+<table class="products-table">
   <tr>
-    <th>ID</th>
     <th>Name</th>
     <th>Price</th>
   </tr>
-  @if (vm$ | async; as vm) {
-    @if (vm.products | productsSearch:vm.searchTerm; as products) {
-      @if (products.length === 0) {
-        <tr>
-          <td colspan="3">
-            No products
-          </td>
-        </tr>
-      }
 
-      @for (product of products; track product) {
-        <tr>
-          <td>{{ product.id }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.price | currency }}</td>
-        </tr>
-      }
-    }
+  @if (products.length === 0) {
+    <tr>
+      <td colspan="2">
+        No products
+      </td>
+    </tr>
+  }
+
+  @for (product of products; track product) {
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.price | currency }}</td>
+    </tr>
   }
 </table>
