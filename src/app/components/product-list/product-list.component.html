@@ -4,18 +4,20 @@
     <th>Price</th>
   </tr>
 
-  @if (products.length === 0) {
-    <tr>
-      <td colspan="2">
-        No products
-      </td>
-    </tr>
-  }
+  <tbody>
+    @if (products.length === 0) {
+      <tr>
+        <td colspan="2">
+          No products
+        </td>
+      </tr>
+    }
 
-  @for (product of products; track product) {
-    <tr>
-      <td>{{ product.name }}</td>
-      <td>{{ product.price | currency }}</td>
-    </tr>
-  }
+    @for (product of products; track product) {
+      <tr>
+        <td data-test-id="name">{{ product.name }}</td>
+        <td data-test-id="price">{{ product.price | currency }}</td>
+      </tr>
+    }
+  </tbody>
 </table>

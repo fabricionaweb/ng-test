@@ -1,10 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { Product } from '../../services/products.service';
 import { ProductListComponent } from './product-list.component';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
   let fixture: ComponentFixture<ProductListComponent>;
+  let mockProducts: Product[] = [
+    {
+      id: '1',
+      name: 'Product ABC',
+      price: 100,
+    },
+    {
+      id: '2',
+      name: 'Product XYZ',
+      price: 200,
+    },
+    {
+      id: '3',
+      name: 'fooBar',
+      price: 200,
+    },
+  ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -13,10 +31,39 @@ describe('ProductListComponent', () => {
 
     fixture = TestBed.createComponent(ProductListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    component.products = [];
+    fixture.detectChanges();
+
     expect(component).toBeTruthy();
+  });
+
+  it('should print no products', () => {
+    component.products = [];
+    fixture.detectChanges();
+
+    expect(
+      fixture.nativeElement.querySelector('tbody').textContent.trim()
+    ).toEqual('No products');
+  });
+
+  it('should print each given product', () => {
+    component.products = mockProducts;
+    fixture.detectChanges();
+
+    const currencyPipe = (price: number) => `\$${price}.00`;
+
+    const rows: Element[] = fixture.nativeElement.querySelectorAll('tbody tr');
+    rows.forEach((row, index) => {
+      expect(row.querySelector('[data-test-id=name]')?.textContent).toEqual(
+        mockProducts[index].name
+      );
+
+      expect(row.querySelector('[data-test-id=price]')?.textContent).toEqual(
+        currencyPipe(mockProducts[index].price)
+      );
+    });
   });
 });

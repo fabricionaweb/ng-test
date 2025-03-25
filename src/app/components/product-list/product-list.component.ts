@@ -15,5 +15,5 @@ export interface ViewModel {
   styleUrl: './product-list.component.scss',
 })
 export class ProductListComponent {
-  @Input() products!: Product[];
+  @Input({ required: true }) products!: Product[];
 }
