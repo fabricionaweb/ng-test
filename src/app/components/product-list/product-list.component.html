@@ -6,7 +6,7 @@
 
   <tbody>
     @if (products.length === 0) {
-      <tr>
+      <tr data-test-id="no-product">
         <td colspan="2">
           No products
         </td>
@@ -14,7 +14,7 @@
     }
 
     @for (product of products; track product) {
-      <tr>
+      <tr data-test-id="product">
         <td data-test-id="name">{{ product.name }}</td>
         <td data-test-id="price">{{ product.price | currency }}</td>
       </tr>

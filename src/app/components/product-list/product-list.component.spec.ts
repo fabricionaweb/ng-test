@@ -45,7 +45,9 @@ describe('ProductListComponent', () => {
     fixture.detectChanges();
 
     expect(
-      fixture.nativeElement.querySelector('tbody').textContent.trim()
+      fixture.nativeElement
+        .querySelector('[data-test-id=no-product]')
+        ?.textContent?.trim()
     ).toEqual('No products');
   });
 
@@ -55,15 +57,17 @@ describe('ProductListComponent', () => {
 
     const currencyPipe = (price: number) => `\$${price}.00`;
 
-    const rows: Element[] = fixture.nativeElement.querySelectorAll('tbody tr');
+    const rows: Element[] = fixture.nativeElement.querySelectorAll(
+      '[data-test-id=product]'
+    );
     rows.forEach((row, index) => {
-      expect(row.querySelector('[data-test-id=name]')?.textContent).toEqual(
-        mockProducts[index].name
-      );
+      expect(
+        row.querySelector('[data-test-id=name]')?.textContent?.trim()
+      ).toEqual(mockProducts[index].name);
 
-      expect(row.querySelector('[data-test-id=price]')?.textContent).toEqual(
-        currencyPipe(mockProducts[index].price)
-      );
+      expect(
+        row.querySelector('[data-test-id=price]')?.textContent?.trim()
+      ).toEqual(currencyPipe(mockProducts[index].price));
     });
   });
 });

@@ -39,7 +39,6 @@ describe('HomeComponent', () => {
 
   it('should render app-product-list', () => {
     fixture.detectChanges();
-    console.log(fixture.nativeElement);
     expect(
       fixture.nativeElement.querySelector('app-product-list')
     ).toBeTruthy();
