@@ -3,11 +3,6 @@ import { Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Product } from '../../services/products.service';
 
-export interface ViewModel {
-  products: Product[];
-  searchTerm: string;
-}
-
 @Component({
   selector: 'app-product-list',
   imports: [ReactiveFormsModule, CurrencyPipe],

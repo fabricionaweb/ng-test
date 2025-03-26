@@ -10,12 +10,14 @@ import {
   map,
   Observable,
 } from 'rxjs';
-import {
-  ProductListComponent,
-  ViewModel,
-} from '../../components/product-list/product-list.component';
+import { ProductListComponent } from '../../components/product-list/product-list.component';
 import { ProductsSearchPipe } from '../../pipes/products-search.pipe';
-import { ProductsService } from '../../services/products.service';
+import { Product, ProductsService } from '../../services/products.service';
+
+export interface ViewModel {
+  products: Product[];
+  searchTerm: string;
+}
 
 @Component({
   selector: 'app-home',
