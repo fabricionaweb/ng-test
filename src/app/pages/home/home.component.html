@@ -16,7 +16,9 @@
 
   @if (vm$ | async; as vm) {
     <app-product-list
-      [products]="vm.products | productsSearch:vm.searchTerm"
+      [products]="vm.products | productsSearch:vm.searchTerm | productsSort:vm.sortBy"
+      [sortBy]="vm.sortBy"
+      (sortByEvent)="onClickSort($event)"
     />
   }
 </main>

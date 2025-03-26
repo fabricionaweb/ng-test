@@ -1,7 +1,12 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Product } from '../../services/products.service';
+
+export interface SortBy {
+  key: 'name' | 'price';
+  order: 'desc' | 'asc';
+}
 
 @Component({
   selector: 'app-product-list',
@@ -10,5 +15,12 @@ import { Product } from '../../services/products.service';
   styleUrl: './product-list.component.scss',
 })
 export class ProductListComponent {
-  @Input({ required: true }) products!: Product[];
+  @Input({ required: true }) products: Product[] = [];
+  @Input() sortBy: SortBy | null = null;
+  @Output() sortByEvent = new EventEmitter<SortBy>();
+
+  public onClickSortBy(key: SortBy['key']): void {
+    const order = this.sortBy?.order === 'desc' ? 'asc' : 'desc';
+    this.sortByEvent.emit({ key, order });
+  }
 }

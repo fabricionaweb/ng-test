@@ -16,3 +16,23 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 }
+
+.sortable {
+  cursor: pointer;
+
+  &::after {
+    font-size: 0.75rem;
+    content: '▼';
+    color: transparent;
+    pointer-events: none;
+  }
+
+  &.is-desc::after {
+    content: '▲';
+  }
+
+  &.is-asc::after,
+  &.is-desc::after {
+    color: inherit;
+  }
+}

@@ -1,7 +1,21 @@
 <table class="products-table">
   <tr>
-    <th>Name</th>
-    <th>Price</th>
+    <th
+      class="sortable"
+      [class.is-asc]="sortBy?.key === 'name' && sortBy?.order === 'asc'"
+      [class.is-desc]="sortBy?.key === 'name' && sortBy?.order === 'desc'"
+      (click)="onClickSortBy('name')"
+    >
+      Name
+    </th>
+    <th
+      class="sortable"
+      [class.is-asc]="sortBy?.key === 'price' && sortBy?.order === 'asc'"
+      [class.is-desc]="sortBy?.key === 'price' && sortBy?.order === 'desc'"
+      (click)="onClickSortBy('price')"
+    >
+      Price
+    </th>
   </tr>
 
   <tbody>
