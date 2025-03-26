@@ -4,21 +4,9 @@ import { ProductsSearchPipe } from './products-search.pipe';
 describe('ProductsSearchPipe', () => {
   let pipe: ProductsSearchPipe;
   let mockProducts: Product[] = [
-    {
-      id: '1',
-      name: 'Product ABC',
-      price: 100,
-    },
-    {
-      id: '2',
-      name: 'Product XYZ',
-      price: 200,
-    },
-    {
-      id: '3',
-      name: 'fooBar',
-      price: 200,
-    },
+    { id: '1', name: 'Product ABC', price: 100 },
+    { id: '2', name: 'Product XYZ', price: 200 },
+    { id: '3', name: 'fooBar', price: 200 },
   ];
 
   beforeEach(() => {
@@ -44,16 +32,8 @@ describe('ProductsSearchPipe', () => {
   it('should ignore case sensitive', () => {
     expect(pipe.transform(mockProducts, 'PRODUCT')).toEqual(
       jasmine.arrayContaining([
-        {
-          id: '1',
-          name: 'Product ABC',
-          price: 100,
-        },
-        {
-          id: '2',
-          name: 'Product XYZ',
-          price: 200,
-        },
+        { id: '1', name: 'Product ABC', price: 100 },
+        { id: '2', name: 'Product XYZ', price: 200 },
       ])
     );
   });
